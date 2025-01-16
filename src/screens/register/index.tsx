@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Image,
   ImageBackground,
@@ -11,7 +11,7 @@ import {styles} from './styles';
 import {Formik} from 'formik';
 import {validationSchema} from '../../utils/utils';
 import {InputBox} from '../../components/inputBox';
-import {CheckBox} from 'react-native-elements';
+// import {CheckBox} from 'react-native-elements';
 
 const initialValues = {
   firstName: '',
@@ -22,7 +22,7 @@ const initialValues = {
 };
 const RegisterScreen = ({navigation}: any) => {
   // const navigation = useNavigation();
-  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+  // const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
   const handleRegister = () => {
     console.log('call');
@@ -51,7 +51,6 @@ const RegisterScreen = ({navigation}: any) => {
             handleChange,
             handleBlur,
             handleSubmit,
-            setFieldValue,
             values,
             errors,
             touched,

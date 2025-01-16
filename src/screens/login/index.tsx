@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Alert,
   Image,
   ImageBackground,
   ScrollView,
@@ -11,14 +12,43 @@ import {styles} from './styles';
 import {Formik} from 'formik';
 import {loginValidationSchema} from '../../utils/utils';
 import {InputBox} from '../../components/inputBox';
+import {login} from '../../features/api';
+import {NavigationProp} from '@react-navigation/native';
+
+type LoginValues = {
+  email: string;
+  password: string;
+};
+
+type LoginResponse = {
+  data?: any;
+};
+
+type Props = {
+  navigation: NavigationProp<any>;
+  login: (email: string, password: string) => Promise<LoginResponse>;
+};
 
 const initialValues = {
   email: '',
   password: '',
 };
-const LoginScreen = ({navigation}: any) => {
-  const handleLogin = () => {
-    navigation.navigate('HomeScreen');
+const LoginScreen = ({navigation}: Props) => {
+  const handleLogin = async (values: LoginValues) => {
+    try {
+      const response = await login(values?.email, values?.password);
+
+      if (response?.data) {
+        navigation.navigate('HomeScreen');
+      } else {
+        Alert.alert('User not found', 'Please first register your email');
+      }
+    } catch (error: any) {
+      Alert.alert(
+        'Login Failed',
+        error?.response?.data?.message || error?.message,
+      );
+    }
   };
 
   return (
