@@ -17,7 +17,10 @@ const initialValues = {
   password: '',
 };
 const LoginScreen = ({navigation}: any) => {
-  const handleLogin = () => {};
+  const handleLogin = () => {
+    navigation.navigate('HomeScreen');
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView>

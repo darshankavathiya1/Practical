@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Image,
   ImageBackground,
@@ -12,7 +12,6 @@ import {Formik} from 'formik';
 import {validationSchema} from '../../utils/utils';
 import {InputBox} from '../../components/inputBox';
 import {CheckBox} from 'react-native-elements';
-import {NavigationAction, useNavigation} from '@react-navigation/native';
 
 const initialValues = {
   firstName: '',
@@ -23,6 +22,8 @@ const initialValues = {
 };
 const RegisterScreen = ({navigation}: any) => {
   // const navigation = useNavigation();
+  const [toggleCheckBox, setToggleCheckBox] = useState(false);
+
   const handleRegister = () => {
     console.log('call');
 
@@ -50,6 +51,7 @@ const RegisterScreen = ({navigation}: any) => {
             handleChange,
             handleBlur,
             handleSubmit,
+            setFieldValue,
             values,
             errors,
             touched,
@@ -99,12 +101,8 @@ const RegisterScreen = ({navigation}: any) => {
               {touched.password && errors.password && (
                 <Text style={styles.errorText}>{errors.password}</Text>
               )}
-
+              {/* <CheckBox title="Click Here" checked={values.isAgreeTC} /> */}
               <View style={styles.checkboxContainer}>
-                {/* <CheckBox
-                  
-                  onValueChange={() => handleChange('isagreeTC')}
-                /> */}
                 <Text style={styles.checkboxText}>
                   By clicking here you are agreed to our{' '}
                   <Text style={styles.linkText}>Terms & Condition</Text>

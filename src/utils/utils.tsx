@@ -9,6 +9,10 @@ export const validationSchema = Yup.object({
   password: Yup.string()
     .min(6, 'Password must be at least 6 characters')
     .required('Password is required'),
+  isAgreeTC: Yup.boolean().oneOf(
+    [true],
+    'You must accept the terms and conditions',
+  ),
 });
 
 export const otpValidationSchema = Yup.object({
